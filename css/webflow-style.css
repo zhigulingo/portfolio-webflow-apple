@@ -2058,8 +2058,8 @@ textarea.w-input, textarea.w-select {
   --corners-flat: 0px;
   --corners-rouded: 40px;
   --white: white;
-  --blue-button: #0171e3;
   --black: black;
+  --blue-button: #0171e3;
 }
 
 .w-layout-blockcontainer {
@@ -2232,19 +2232,21 @@ textarea.w-input, textarea.w-select {
 
 .case-container.melodix {
   cursor: pointer;
+  background-image: url("../images/melodix.jpg");
+  background-position: 50% 0;
   overflow: visible;
 }
 
 .case-container.tasker {
-  background-image: url("../images/taskershowcasecover.png");
+  background-image: url("../images/tasker.jpg");
 }
 
 .case-container.tgcontest {
-  background-image: url("../images/walletshowcasecover.png");
+  background-image: url("../images/wallet.jpg");
 }
 
 .case-container.omt {
-  background-image: url("../images/omtshowcasecover.png");
+  background-image: url("../images/omtapp.jpg");
 }
 
 .case-container.gto {
@@ -2253,7 +2255,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .case-container.demis {
-  background-image: url("../images/project-206.png");
+  background-image: url("../images/demisai.jpg");
   background-position: 50%;
 }
 
@@ -2492,18 +2494,22 @@ textarea.w-input, textarea.w-select {
 }
 
 .review-card.big.dreamstalk {
-  background-image: url("../images/side-20project-201.png");
-  background-position: 50% 0;
-  background-size: cover;
+  background-color: #f8f8fa;
+  background-image: url("../images/animatedsticker-ezgif.com-gif-maker.gif");
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
   flex: 1;
   min-width: 460px;
   min-height: 460px;
 }
 
 .review-card.big.helper {
-  background-image: url("../images/helpershowcasecover.png");
-  background-position: 50% 0;
-  background-size: cover;
+  background-color: #f8f8fa;
+  background-image: url("../images/639b398738ab4f75f608bdc9_card-img-01-402.jpg");
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-size: 200px;
   background-attachment: scroll;
   flex: 1;
   min-width: 460px;
@@ -2524,7 +2530,7 @@ textarea.w-input, textarea.w-select {
 
 .persona.jack {
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .button-2 {
@@ -2611,6 +2617,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .heading.review-card {
+  color: var(--black);
   background-color: #0000;
   border-radius: 40px;
   flex-flow: column;
@@ -2655,6 +2662,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .text-block-2 {
+  color: var(--black);
   flex: 0 auto;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   display: block;
@@ -3211,7 +3219,7 @@ textarea.w-input, textarea.w-select {
   justify-content: center;
   align-self: auto;
   align-items: center;
-  display: flex;
+  display: none;
 }
 
 .div-block-12:hover {
@@ -3234,7 +3242,7 @@ textarea.w-input, textarea.w-select {
 .div-block-13 {
   grid-column-gap: 6px;
   grid-row-gap: 6px;
-  color: #06c;
+  color: var(--black);
   cursor: pointer;
   flex: 1;
   justify-content: center;
@@ -3245,12 +3253,12 @@ textarea.w-input, textarea.w-select {
 
 .div-block-13:hover {
   color: #06c;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .paragraph-4 {
-  color: #06c;
-  cursor: pointer;
+  color: var(--black);
+  cursor: default;
   margin-bottom: 0;
   font-size: 16px;
 }
@@ -3389,6 +3397,7 @@ textarea.w-input, textarea.w-select {
 
 .link:hover {
   color: #06c;
+  text-decoration: underline;
 }
 
 .youtube {
@@ -3925,7 +3934,7 @@ textarea.w-input, textarea.w-select {
   margin-left: auto;
   margin-right: auto;
   padding-top: 60px;
-  display: flex;
+  display: none;
   position: fixed;
   inset: 0% 5%;
 }
@@ -3973,6 +3982,24 @@ textarea.w-input, textarea.w-select {
   display: flex;
 }
 
+.heading-4 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.heading-5 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 48px;
+  line-height: 48px;
+}
+
+.heading-6 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+}
+
 .text-section-tasker {
   grid-column-gap: 12px;
   grid-row-gap: 12px;
@@ -4013,7 +4040,7 @@ textarea.w-input, textarea.w-select {
   align-items: center;
   height: 100%;
   padding: 20px 30px 80px;
-  display: block;
+  display: flex;
   position: relative;
   top: 20px;
   left: auto;
@@ -4181,6 +4208,13 @@ textarea.w-input, textarea.w-select {
   display: none;
 }
 
+.heading-7 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 52px;
+}
+
 .toggle-wrapper-mobile {
   background-color: var(--white);
   border-radius: 60px;
@@ -4207,7 +4241,7 @@ textarea.w-input, textarea.w-select {
   inset: 0% 5%;
 }
 
-.testimonial-popup.jack {
+.testimonial-popup.jack, .testimonial-popup.anton, .testimonial-popup.kate, .testimonial-popup.vlad, .testimonial-popup.nik {
   display: none;
 }
 
@@ -4255,6 +4289,14 @@ textarea.w-input, textarea.w-select {
   min-height: 460px;
 }
 
+.review-card-pop.kate {
+  height: 44%;
+}
+
+.review-card-pop.nik {
+  height: 48%;
+}
+
 .div-block-27 {
   flex-flow: column;
   justify-content: center;
@@ -4275,6 +4317,19 @@ textarea.w-input, textarea.w-select {
   height: 0%;
   display: block;
   position: relative;
+}
+
+.heading-9 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 52px;
+}
+
+.heading-10 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 48px;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 991px) {
@@ -4397,6 +4452,12 @@ textarea.w-input, textarea.w-select {
     flex-flow: column;
     justify-content: space-between;
     align-items: flex-start;
+    margin-left: 20px;
+  }
+
+  .case-container.gto {
+    min-width: 340px;
+    min-height: 440px;
   }
 
   .div-block-3 {
@@ -4406,6 +4467,8 @@ textarea.w-input, textarea.w-select {
     justify-content: center;
     align-items: flex-start;
     min-height: 500px;
+    margin-left: 20px;
+    margin-right: 20px;
     display: flex;
   }
 
@@ -4468,12 +4531,26 @@ textarea.w-input, textarea.w-select {
     min-height: 300px;
   }
 
+  .testimonials {
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
   .text-block-2 {
     text-align: center;
   }
 
   .carousel-wrapper {
+    justify-content: space-between;
+    align-items: center;
     min-width: 100%;
+    padding-left: 0;
+  }
+
+  .carousel-wrapper.big {
+    margin-bottom: -30px;
+    padding-bottom: 20px;
   }
 
   .project-container {
@@ -4523,6 +4600,14 @@ textarea.w-input, textarea.w-select {
     margin-top: 20px;
   }
 
+  .showase-carousel-wrapper {
+    padding-left: 20px;
+  }
+
+  .melodix-hero {
+    padding-top: 24px;
+  }
+
   .fade-mn {
     justify-content: flex-start;
     align-items: center;
@@ -4532,9 +4617,20 @@ textarea.w-input, textarea.w-select {
     overflow: visible;
   }
 
+  .melodix-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
   .heading-2 {
     font-size: 1.5rem;
     line-height: 1.8rem;
+  }
+
+  .projects {
+    padding-bottom: 10px;
   }
 
   .image-section {
@@ -4552,7 +4648,7 @@ textarea.w-input, textarea.w-select {
     grid-column-gap: 12px;
     grid-row-gap: 12px;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-left: 0;
     margin-right: 0;
     padding-left: 0;
@@ -4567,12 +4663,36 @@ textarea.w-input, textarea.w-select {
   }
 
   .project-box.services {
+    justify-content: flex-start;
+    align-items: flex-start;
     margin-left: 20px;
     margin-right: 20px;
   }
 
   .background-video {
     height: 300px;
+  }
+
+  .tasker-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .tasker-hero {
+    padding-top: 24px;
+  }
+
+  .telegram-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .telegram-hero {
+    padding-top: 24px;
   }
 
   .question-popup {
@@ -4601,8 +4721,8 @@ textarea.w-input, textarea.w-select {
     grid-auto-columns: 1fr;
     width: 90%;
     height: 42rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
     padding-top: 40px;
     padding-left: 20px;
     padding-right: 20px;
@@ -4611,26 +4731,99 @@ textarea.w-input, textarea.w-select {
     right: 0;
   }
 
+  .omtogether-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .omtogether-hero {
+    padding-top: 24px;
+  }
+
   .policyfly-popup {
     justify-content: center;
     align-items: center;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 20px;
     display: none;
+    left: 0%;
+    right: 0%;
   }
 
   .policyfly-hero {
     flex: 0 auto;
+    padding-top: 24px;
+  }
+
+  .demis-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .demis-hero {
+    padding-top: 24px;
+  }
+
+  .branding-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .branding-hero {
+    padding-top: 24px;
+  }
+
+  .button-6 {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 12rem;
+    max-width: 12rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .logo-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .logo-hero {
+    padding-top: 24px;
+  }
+
+  .package-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .package-hero {
+    padding-top: 24px;
   }
 
   .order-popup {
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
     padding-left: 0;
     padding-right: 0;
     display: none;
+    left: 0%;
+    right: 0%;
   }
 
   .order-hero {
@@ -4657,6 +4850,69 @@ textarea.w-input, textarea.w-select {
     font-size: 32px;
   }
 
+  .promo-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .logo-anim-popup {
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .logo-anim-hero {
+    flex-flow: column;
+    padding-top: 24px;
+    display: block;
+  }
+
+  .series-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .series-hero {
+    padding-top: 24px;
+  }
+
+  .app-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .app-hero {
+    padding-top: 24px;
+  }
+
+  .tech-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .tech-hero {
+    padding-top: 24px;
+  }
+
+  .web-popup {
+    padding-top: 40px;
+    display: none;
+    left: 0%;
+    right: 0%;
+  }
+
+  .web-hero {
+    padding-top: 24px;
+  }
+
   .questionare-mobile {
     flex-flow: row;
     justify-content: center;
@@ -4667,7 +4923,7 @@ textarea.w-input, textarea.w-select {
   .heading-7 {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 32px;
-    line-height: 44px;
+    line-height: 32px;
   }
 
   .toggle-wrapper-mobile {
@@ -4677,8 +4933,13 @@ textarea.w-input, textarea.w-select {
     display: flex;
   }
 
+  .testimonial-popup.jack, .testimonial-popup.anton, .testimonial-popup.kate, .testimonial-popup.vlad, .testimonial-popup.nik {
+    display: none;
+  }
+
   .review-card-pop {
     width: 400px;
+    height: 64%;
   }
 
   .review-card-pop.big.dreamstalk, .review-card-pop.big.helper {
@@ -4687,9 +4948,31 @@ textarea.w-input, textarea.w-select {
     min-height: 300px;
   }
 
+  .review-card-pop.kate {
+    height: 60%;
+  }
+
+  .review-card-pop.nik {
+    height: 64%;
+  }
+
+  .review-card-pop.vlad {
+    height: 60%;
+  }
+
   .heading-8 {
     text-align: center;
     font-size: 28px;
     line-height: 36px;
+  }
+
+  .heading-9 {
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  .heading-11, .heading-12, .heading-13 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-weight: 600;
   }
 }

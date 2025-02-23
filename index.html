@@ -191,29 +191,30 @@ After generating the animated scenes with depth, I&#x27;ve integrated them into 
         }
     }
 
-    // Находим секцию с поп-апами
-    const modalSection = document.querySelector('.modal-popups');
-    if (modalSection) {
-        // Создаём наблюдатель за изменениями
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach(() => {
-                // Проверяем, есть ли видимый поп-ап
-                const isAnyPopupVisible = Array.from(modalSection.querySelectorAll('section'))
-                    .some(popup => window.getComputedStyle(popup).display !== 'none');
-                
-                // Отключаем или включаем скролл в зависимости от видимости
-                toggleScroll(!isAnyPopupVisible);
-            });
-        });
+    // Ждём полной загрузки страницы
+    window.addEventListener('load', () => {
+        const modalSection = document.querySelector('.modal-popups');
+        if (modalSection) {
+            // Начальное состояние: включаем скролл, если все поп-апы скрыты
+            const isAnyPopupVisible = Array.from(modalSection.querySelectorAll('section'))
+                .some(popup => window.getComputedStyle(popup).display !== 'none');
+            toggleScroll(!isAnyPopupVisible);
 
-        // Настраиваем наблюдатель на изменение стилей и дочерних элементов
-        observer.observe(modalSection, {
-            attributes: true,
-            childList: true,
-            subtree: true,
-            attributeFilter: ['style'] // Следим только за изменениями стилей
-        });
-    } else {
-        console.error('Секция .modal-popups не найдена');
-    }
+            // Наблюдатель за изменениями
+            const observer = new MutationObserver((mutations) => {
+                const isAnyPopupVisibleNow = Array.from(modalSection.querySelectorAll('section'))
+                    .some(popup => window.getComputedStyle(popup).display !== 'none');
+                toggleScroll(!isAnyPopupVisibleNow);
+            });
+
+            observer.observe(modalSection, {
+                attributes: true,
+                childList: true,
+                subtree: true,
+                attributeFilter: ['style']
+            });
+        } else {
+            console.error('Секция .modal-popups не найдена');
+        }
+    });
 </script></body></html>

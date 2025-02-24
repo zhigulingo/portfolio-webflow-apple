@@ -196,7 +196,6 @@ After generating the animated scenes with depth, I&#x27;ve integrated them into 
 
     window.addEventListener('load', () => {
         console.log('Страница загружена');
-        // Включаем скролл при загрузке, если все поп-апы скрыты
         const modalSection = document.querySelector('.modal-popups');
         if (modalSection) {
             console.log('Секция .modal-popups найдена');
@@ -209,7 +208,11 @@ After generating the animated scenes with depth, I&#x27;ve integrated them into 
             const observer = new MutationObserver((mutations) => {
                 console.log('Обнаружено изменение в .modal-popups');
                 const isAnyPopupVisibleNow = Array.from(popups)
-                    .some(popup => window.getComputedStyle(popup).display !== 'none');
+                    .some(popup => {
+                        const display = window.getComputedStyle(popup).display;
+                        console.log(`Стиль поп-апа ${popup.className}: ${display}`);
+                        return display !== 'none';
+                    });
                 console.log('Текущие видимые поп-апы:', isAnyPopupVisibleNow);
                 toggleScroll(!isAnyPopupVisibleNow);
             });

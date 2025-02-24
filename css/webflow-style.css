@@ -4983,6 +4983,9 @@ textarea.w-input, textarea.w-select {
   body.no-scroll {
     overflow: hidden !important;
     height: 100vh !important;
+    margin: 0 !important; /* Убираем возможные отступы */
+    position: fixed !important; /* Фиксируем body, чтобы исключить скролл */
+    width: 100% !important; /* Убеждаемся, что ширина не вызывает проблемы */
   }
 
 }

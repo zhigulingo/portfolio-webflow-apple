@@ -4982,6 +4982,8 @@ textarea.w-input, textarea.w-select {
 
   body.no-scroll {
     overflow: hidden !important;
+    overflow-x: hidden !important; /* Уточняем для обеих осей */
+    overflow-y: hidden !important;
     height: 100vh !important;
     margin: 0 !important;
     position: fixed !important;

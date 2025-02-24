@@ -194,39 +194,55 @@ After generating the animated scenes with depth, I&#x27;ve integrated them into 
         }
     }
 
-    // Включаем скролл при загрузке
-    window.addEventListener('load', () => {
-        console.log('Страница загружена');
-        toggleScroll(true); // Скролл активен по умолчанию
-    });
+    // Запускаем сразу при загрузке DOM, а не ждём полной загрузки
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM загружен');
+        // Убираем no-scroll при загрузке, если поп-апы закрыты
+        toggleScroll(true);
+        const modalSection = document.querySelector('.modal-popups');
+        if (modalSection) {
+            console.log('Секция .modal-popups найдена');
+            const popups = modalSection.querySelectorAll('section');
+            const isAnyPopupVisible = Array.from(popups)
+                .some(popup => {
+                    const display = window.getComputedStyle(popup).display;
+                    const opacity = window.getComputedStyle(popup).opacity;
+                    console.log(`Стиль поп-апа ${popup.className} при загрузке: display=${display}, opacity=${opacity}`);
+                    return display !== 'none' || parseFloat(opacity) > 0;
+                });
+            console.log('Видимые поп-апы при загрузке:', isAnyPopupVisible);
+            toggleScroll(!isAnyPopupVisible);
 
-    // Находим все кнопки закрытия (крестик) в поп-апах
-    const closeButtons = document.querySelectorAll('.close-button');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            console.log('Клик по кнопке закрытия');
-            toggleScroll(true); // Включаем скролл при закрытии поп-апа
-        });
-    });
+            // Обработчики событий для открытия и закрытия
+            const openTriggers = document.querySelectorAll('.div-block-14, .get-started, .learn, .order-button .buy, .case-container');
+            openTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    console.log('Клик по триггеру открытия поп-апа');
+                    toggleScroll(false); // Отключаем скролл при открытии
+                });
+            });
 
-    // Отслеживание завершения анимации fade (если поп-ап исчезает)
-    const popups = document.querySelectorAll('.modal-popups section');
-    popups.forEach(popup => {
-        popup.addEventListener('transitionend', (event) => {
-            if (event.propertyName === 'opacity' && window.getComputedStyle(popup).opacity === '0') {
-                console.log('Анимация fade завершена, поп-ап скрыт');
-                toggleScroll(true); // Включаем скролл, если поп-ап стал невидимым
-            }
-        });
-    });
+            const closeButtons = document.querySelectorAll('.close-button');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    console.log('Клик по кнопке закрытия');
+                    toggleScroll(true); // Включаем скролл при закрытии
+                });
+            });
 
-    // Отключаем скролл при открытии поп-апа (через клик на триггеры)
-    const openTriggers = document.querySelectorAll('.div-block-14, .get-started, .learn, .order-button .buy, .case-container');
-    openTriggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-            console.log('Клик по триггеру открытия поп-апа');
-            toggleScroll(false); // Отключаем скролл при открытии
-        });
+            // Отслеживание анимации fade для закрытия
+            popups.forEach(popup => {
+                popup.addEventListener('transitionend', (event) => {
+                    if (event.propertyName === 'opacity' && window.getComputedStyle(popup).opacity === '0') {
+                        console.log('Анимация fade завершена, поп-ап скрыт');
+                        toggleScroll(true); // Включаем скролл после fade
+                    }
+                });
+            });
+        } else {
+            console.error('Секция .modal-popups не найдена');
+            toggleScroll(true);
+        }
     });
 </script>
 

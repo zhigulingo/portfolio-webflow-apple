@@ -4980,4 +4980,10 @@ textarea.w-input, textarea.w-select {
   color: #06C;
   }
 
+  body.no-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+
 }

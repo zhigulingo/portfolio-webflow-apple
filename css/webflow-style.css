@@ -4980,8 +4980,9 @@ textarea.w-input, textarea.w-select {
   color: #06C;
   }
 
-  body.body[style*="position: fixed"] {
-    padding-right: 15px; /* Компенсация для скроллбара */
+  body.no-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
   }
 
 }

@@ -1,9 +1,11 @@
 # Decap CMS config
+
 backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/images/uploads"
+# Use correct path for static hosting (no public/ folder)
+media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:

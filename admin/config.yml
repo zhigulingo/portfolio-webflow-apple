@@ -16,7 +16,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Category", name: "category", widget: "select", options: ["Web Development", "Mobile Development", "UI/UX Design", "Branding"] }
+      - { label: "Category", name: "category", widget: "select", options: ["Promo Video Production", "Game Design and Interactive Animation", "User Experience & User Interface", "Research & Development", "Concept creation & Brand Design", "AI content creation"] }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Demo Video", name: "video", widget: "file", required: false }

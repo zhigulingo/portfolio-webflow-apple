@@ -68,6 +68,17 @@
           }
         });
       }
+      if (window.CMS) {
+        CMS.registerPreviewStyle("/admin_tmp/project/dist/assets/index-39fd6179.css", { raw: false });
+        console.log('CMS loaded');
+      } else {
+        document.addEventListener('DOMContentLoaded', function() {
+          if (window.CMS) {
+            CMS.registerPreviewStyle("/admin_tmp/project/dist/assets/index-39fd6179.css", { raw: false });
+            console.log('CMS loaded');
+          }
+        });
+      }
     </script>
   </body>
 </html>

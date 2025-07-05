@@ -1,0 +1,26 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Enable Netlify Identity
+[context.production]
+  command = "npm run build"
+
+[context.deploy-preview]
+  command = "npm run build"
+
+# Netlify Identity settings
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Enable Git Gateway for Decap CMS
+[context.production.environment]
+  NETLIFY_SITE_URL = "https://your-site.netlify.app"
+
+[context.deploy-preview.environment]
+  NETLIFY_SITE_URL = "https://deploy-preview-$DEPLOY_ID--your-site.netlify.app"

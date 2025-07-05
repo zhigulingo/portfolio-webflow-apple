@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircleIcon, FlagIcon, ChevronLeftIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
@@ -290,6 +290,7 @@ export default function Questionnaire() {
   const [showCloseTooltip, setShowCloseTooltip] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const closeQuestionnaire = () => {
     // Reset questionnaire to initial state
@@ -396,6 +397,17 @@ export default function Questionnaire() {
     }
     return 'Next';
   };
+
+  useEffect(() => {
+    window.showQuestionare = () => setShowModal(true);
+    window.closeQuestionare = () => setShowModal(false);
+    return () => {
+      delete window.showQuestionare;
+      delete window.closeQuestionare;
+    };
+  }, []);
+
+  if (!showModal) return null;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">

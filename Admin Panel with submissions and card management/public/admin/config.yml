@@ -2,42 +2,43 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
+media_folder: "public/uploads"
+public_folder: "/uploads"
 
 collections:
   - name: "projects"
-    label: "Portfolio Projects"
+    label: "Projects"
     folder: "content/projects"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Category", name: "category", widget: "select", options: ["Web Development", "Mobile Development", "UI/UX Design", "Branding"] }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Demo Video", name: "video", widget: "file", required: false }
-      - { label: "Technologies", name: "technologies", widget: "list", default: [] }
-      - { label: "Project URL", name: "url", widget: "string", required: false }
-      - { label: "GitHub URL", name: "github", widget: "string", required: false }
-      - { label: "Visible", name: "visible", widget: "boolean", default: true }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
-      - { label: "Order", name: "order", widget: "number", default: 0 }
-      - { label: "Content", name: "body", widget: "markdown" }
+      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Video", name: "video", widget: "string", required: false }
+      - { label: "Technologies", name: "technologies", widget: "list", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", required: false }
+      - { label: "Visible", name: "visible", widget: "boolean", required: false }
+      - { label: "Order", name: "order", widget: "number", required: false }
+      - { label: "Project URL", name: "projectUrl", widget: "string", required: false }
+      - { label: "GitHub URL", name: "githubUrl", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "testimonials"
     label: "Testimonials"
     folder: "content/testimonials"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
     fields:
-      - { label: "Client Name", name: "name", widget: "string" }
-      - { label: "Company", name: "company", widget: "string" }
-      - { label: "Position", name: "position", widget: "string" }
-      - { label: "Avatar", name: "avatar", widget: "image" }
-      - { label: "Rating", name: "rating", widget: "select", options: ["1", "2", "3", "4", "5"], default: "5" }
-      - { label: "Testimonial", name: "content", widget: "text" }
-      - { label: "Visible", name: "visible", widget: "boolean", default: true }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
-      - { label: "Order", name: "order", widget: "number", default: 0 }
-      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Role", name: "role", widget: "string", required: false }
+      - { label: "Company", name: "company", widget: "string", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", required: false }
+      - { label: "Visible", name: "visible", widget: "boolean", required: false }
+      - { label: "Order", name: "order", widget: "number", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }

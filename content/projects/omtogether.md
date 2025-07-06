@@ -1,14 +1,16 @@
 ---
-title: "OMTOGETHER"
-subtitle: "Concept ceation & Brand Design"
-image: "images/file-20cover-20-201.png"
-video: ""
 technologies: []
-featured: false
-visible: true
-order: 1
-projectUrl: "https://omtogether.app"
 githubUrl: ""
+title: OMTOGETHER TEST
+category: Promo Video Production
+description: A
+image: images/file-20cover-20-201.png
+video: ""
+visible: true
+featured: false
+order: 1
+projectUrl: https://omtogether.app
+subtitle: Concept ceation & Brand Design
 ---
 
 Practice Tracker with community and crypto.

@@ -1,7 +1,10 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
-export default function Home() {
+export default function Home({ projects }) {
   useEffect(() => {
     // Webflow's JS body class toggler
     document.documentElement.className += ' w-mod-js';
@@ -102,83 +105,22 @@ export default function Home() {
         </section>
         <section data-w-id="c468bf85-5037-1fcd-6499-54d9a75cde72" className="showcase-carousel">
           <div className="showase-carousel-wrapper">
-            <div data-w-id="ae8c0e05-e12c-266c-a6e2-84f183039c06" className="w-layout-blockcontainer case-container gto w-container">
-              <div className="showcase-text">
-                <div className="showcase-subtitle light">Promo Video Production</div>
-                <h1 className="showcase-title light">PolicyFly</h1>
-              </div>
-              <div className="showcase-button">
-                <div data-w-id="8031ea01-d9b4-c444-7445-5aebff8b6828" className="div-block-14">
-                  <img src="/images/plus.svg" loading="lazy" width={24} alt="" />
+            {projects && projects.filter(p => p.visible !== false).map((project, idx) => (
+              <div
+                key={project.slug || idx}
+                className={`w-layout-blockcontainer case-container ${project.category ? project.category.toLowerCase().replace(/\s+/g, '-') : ''} w-container`}
+              >
+                <div className="showcase-text">
+                  <div className="showcase-subtitle light">{project.subtitle || project.category}</div>
+                  <h1 className="showcase-title light">{project.title}</h1>
+                </div>
+                <div className={`showcase-button${project.category ? ' ' + project.category.toLowerCase().replace(/\s+/g, '-') : ''}`}>
+                  <div className="div-block-14">
+                    <img src="/images/plus.svg" loading="lazy" width={24} alt="Open details" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div data-w-id="fc34e3db-faa2-e98c-568f-b368501abb1f" className="w-layout-blockcontainer case-container melodix w-container">
-              <div className="showcase-text">
-                <div className="showcase-subtitle">Game Design and Interactive Animation</div>
-                <h1 className="showcase-title">Melodix Crypto</h1>
-              </div>
-              <div className="showcase-button melodix">
-                <div data-w-id="0a20ef73-1458-af82-fd22-0644a465cc78" className="div-block-14">
-                  <img src="/images/plus.svg" loading="lazy" width={24} alt="" />
-                </div>
-              </div>
-            </div>
-            <div data-w-id="5ea8b895-6a42-17bb-1cf3-e43cf9cc8994" className="w-layout-blockcontainer case-container tasker w-container">
-              <div className="showcase-text">
-                <div className="showcase-subtitle">User Experience &amp; User Interface</div>
-                <h1 className="showcase-title">Tasker</h1>
-              </div>
-              <div className="showcase-button tasker">
-                <div data-w-id="785c3f09-5368-050c-0593-154684736bc5" className="div-block-14">
-                  <img src="/images/plus.svg" loading="lazy" width={24} alt="" />
-                </div>
-              </div>
-            </div>
-            <div data-w-id="8a6b9656-4d50-24e9-31d4-400005d12c12" className="w-layout-blockcontainer case-container tgcontest w-container">
-              <div className="showcase-text">
-                <div className="showcase-subtitle">Research &amp; Development</div>
-                <h1 className="showcase-title">Telegram Wallet</h1>
-              </div>
-              <div className="showcase-button">
-                <div data-w-id="5c1053c1-89b1-b260-48db-eb006c3d21ab" className="div-block-14">
-                  <img src="/images/plus.svg" loading="lazy" width={24} alt="" />
-                </div>
-              </div>
-            </div>
-            <div data-w-id="538f5feb-18fe-07b5-dde0-0f5d3416de82" className="w-layout-blockcontainer case-container omt w-container">
-              <div className="showcase-text">
-                <div className="showcase-subtitle">Concept ceation &amp; Brand Design</div>
-                <h1 className="showcase-title">OMTOGETHER</h1>
-              </div>
-              <div className="showcase-button">
-                <div data-w-id="38ca1740-0fed-58fa-c5f9-7ead512e8ddb" className="div-block-14">
-                  <img src="/images/plus.svg" loading="lazy" width={24} alt="" />
-                </div>
-              </div>
-            </div>
-            <div data-w-id="b6bc3cb0-9220-7c1d-11db-1c66c88f3f19" className="w-layout-blockcontainer case-container demis w-container">
-              <div className="showcase-text">
-                <div className="showcase-subtitle">AI content creation</div>
-                <h1 className="showcase-title">Special Project</h1>
-              </div>
-              <div className="showcase-button">
-                <div data-w-id="998cf75f-5715-6b65-3a55-5ef7a3e5b6cd" className="div-block-14">
-                  <img src="/images/plus.svg" loading="lazy" width={24} alt="" />
-                </div>
-              </div>
-            </div>
-            <div className="w-layout-blockcontainer case-container original w-container">
-              <div className="showcase-text">
-                <div className="showcase-subtitle">AI content creation</div>
-                <h1 className="showcase-title">Special Project</h1>
-              </div>
-              <div className="showcase-button">
-                <div data-w-id="5431b4a3-95dc-3dc4-9c84-b41233515d9e" className="div-block-14">
-                  <img src="/images/plus.svg" loading="lazy" width={24} alt="" />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
         {/* End Showcase/Projects Carousel Section */}
@@ -906,4 +848,19 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const projectsDir = path.join(process.cwd(), 'content/projects');
+  const files = fs.readdirSync(projectsDir).filter(f => f.endsWith('.md'));
+  const projects = files.map(filename => {
+    const slug = filename.replace(/\.md$/, '');
+    const fullPath = path.join(projectsDir, filename);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { data, content } = matter(fileContents);
+    return { slug, ...data, content };
+  });
+  // Optionally sort by order or featured
+  projects.sort((a, b) => (a.order || 0) - (b.order || 0));
+  return { props: { projects } };
 } 

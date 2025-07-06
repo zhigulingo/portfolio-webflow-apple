@@ -13,13 +13,16 @@ export default function Home({ projects, testimonials }) {
             <a>
               <ProjectCard
                 title={p.data.title}
-                description={p.data.subtitle || p.data.description}
-                category={p.data.type || p.data.category}
+                description={p.data.description || p.data.subtitle}
+                category={p.data.category || p.data.type}
                 image={p.data.image}
                 technologies={p.data.technologies || []}
                 featured={p.data.featured}
                 visible={p.data.visible !== false}
                 video={p.data.video}
+                order={p.data.order}
+                projectUrl={p.data.projectUrl}
+                githubUrl={p.data.githubUrl}
               />
             </a>
           </Link>

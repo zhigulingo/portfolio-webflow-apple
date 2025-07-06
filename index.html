@@ -216,11 +216,14 @@ After generating the animated scenes with depth, I've integrated them into the w
 <link rel="stylesheet" href="/questionare/dist/assets/index-c276fc13.css">
 <script type="module" src="/questionare/dist/assets/index-cc1b6924.js"></script>
 <script>
-  // Optionally, you can trigger a function inside React from here if needed
-  // For now, no show/hide logic for #root; React handles its own modal
-  window.toggleQuestionareWidget = function(show) {
-    // You can implement communication with React here if needed
-  };
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.get-started').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (window.showQuestionare) window.showQuestionare();
+      });
+    });
+  });
 </script>
 
 </body></html>

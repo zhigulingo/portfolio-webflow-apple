@@ -1,10 +1,14 @@
 ---
 title: "PolicyFly"
 subtitle: "Promo Video Production"
-type: "gto"
 image: "images/image-20477.png"
-link: "https://policyfly.com"
 video: "https://player.vimeo.com/video/1040757532"
+technologies: []
+featured: false
+visible: true
+order: 2
+projectUrl: "https://policyfly.com"
+githubUrl: ""
 ---
 
 AI-powered insurance management tool for underwriters. YC-backed startup.

@@ -1,10 +1,14 @@
 ---
 title: "OMTOGETHER"
 subtitle: "Concept ceation & Brand Design"
-type: "omt"
 image: "images/file-20cover-20-201.png"
-link: "https://omtogether.app"
 video: ""
+technologies: []
+featured: false
+visible: true
+order: 1
+projectUrl: "https://omtogether.app"
+githubUrl: ""
 ---
 
 Practice Tracker with community and crypto.

@@ -1,10 +1,14 @@
 ---
 title: "Tasker"
 subtitle: "User Experience & User Interface"
-type: "tasker"
 image: "images/taskercover.png"
-link: ""
 video: "https://www.youtube-nocookie.com/embed/RIFo0nCRZ-4?rel=0&controls=1&autoplay=1&mute=1&start=847"
+technologies: []
+featured: false
+visible: true
+order: 4
+projectUrl: ""
+githubUrl: ""
 ---
 
 Tasker is a web application designed as a marketplace and escrow platform where clients can post tasks, set cryptocurrency-based rewards, and select performers from a pool of applicants. Once the task is completed, the reward is unlocked, ensuring trust and transparency. If disputes arise, platform administrators act as neutral arbitrators, guaranteeing fairness for both parties.

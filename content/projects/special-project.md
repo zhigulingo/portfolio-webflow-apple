@@ -1,10 +1,14 @@
 ---
 title: "Special Project"
 subtitle: "AI content creation"
-type: "demis"
 image: "images/opengraph.png"
-link: ""
 video: ""
+technologies: []
+featured: false
+visible: true
+order: 6
+projectUrl: ""
+githubUrl: ""
 ---
 
 On this project, I had the opportunity to utilize all the latest generative AI tools in action: Midjourney, Magnific, and several others that assisted throughout the project. From GPT to adjust prompts for MJ to FireFly from Adobe to address halting issues from other AI in the final scenes, we used a wide range of generative AI technologies.

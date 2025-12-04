@@ -60,14 +60,24 @@
 
 
   <script>
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
-        if (data.country_code === 'RU') {
+    (function () {
+      var checkAndRedirect = function (countryCode) {
+        if (countryCode === 'RU') {
           window.location.href = '/ru.html';
         }
-      })
-      .catch(err => console.error('Error checking location:', err));
+      };
+
+      fetch('https://ipapi.co/json/')
+        .then(function (res) { return res.json(); })
+        .then(function (data) { checkAndRedirect(data.country_code); })
+        .catch(function (err) {
+          console.warn('ipapi.co failed, trying fallback:', err);
+          fetch('https://get.geojs.io/v1/ip/country.json')
+            .then(function (res) { return res.json(); })
+            .then(function (data) { checkAndRedirect(data.country); })
+            .catch(function (e) { console.error('All geo-lookups failed:', e); });
+        });
+    })();
   </script>
 </head>
 

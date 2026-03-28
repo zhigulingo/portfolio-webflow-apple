@@ -1403,20 +1403,17 @@
     }
   </style>
 
-  <!-- Neutralize IX2 animations now handled by GSAP -->
+  <!-- Neutralize IX2 popup triggers (now handled by GSAP) -->
   <script>
     (function() {
-      ['d947ce57-6eb1-4b2c-5507-e2e93414fa03',
-       '81f5920d-9b68-dd34-2c26-e8cd4a73d793',
-       'c468bf85-5037-1fcd-6499-54d9a75cde72'].forEach(function(id) {
-        var el = document.querySelector('[data-w-id="' + id + '"]');
-        if (el) el.removeAttribute('data-w-id');
-      });
-      ['.modal-popups [data-w-id]','.question-popup [data-w-id]','.order-popup [data-w-id]','.testimonial-popup [data-w-id]'].forEach(function(sel) {
-        document.querySelectorAll(sel).forEach(function(el) { el.removeAttribute('data-w-id'); });
-      });
-      ['.showcase-carousel [data-w-id]','.features [data-w-id]','.testimonials [data-w-id]','.projects [data-w-id]','.get-started[data-w-id]','.questionare [data-w-id]','.questionare-mobile [data-w-id]'].forEach(function(sel) {
-        document.querySelectorAll(sel).forEach(function(el) { el.removeAttribute('data-w-id'); });
+      ['.modal-popups [data-w-id]','.showcase-carousel [data-w-id]',
+       '.features [data-w-id]','.testimonials [data-w-id]',
+       '.projects [data-w-id]','.get-started[data-w-id]',
+       '.questionare [data-w-id]','.questionare-mobile [data-w-id]'
+      ].forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(el) {
+          el.removeAttribute('data-w-id');
+        });
       });
     })();
   </script>

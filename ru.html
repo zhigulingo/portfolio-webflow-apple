@@ -1403,6 +1403,53 @@
     }
   </style>
 
+  <!-- Remove IX2 scroll animations (now handled by GSAP) -->
+  <script>
+    (function() {
+      var el = document.querySelector('[data-w-id="d947ce57-6eb1-4b2c-5507-e2e93414fa03"]');
+      if (el) el.removeAttribute('data-w-id');
+      var h1 = document.querySelector('[data-w-id="81f5920d-9b68-dd34-2c26-e8cd4a73d793"]');
+      if (h1) h1.removeAttribute('data-w-id');
+      var h2 = document.querySelector('[data-w-id="c468bf85-5037-1fcd-6499-54d9a75cde72"]');
+      if (h2) h2.removeAttribute('data-w-id');
+    })();
+  </script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Video hero: scale down + round corners on scroll
+    gsap.to('.round-corner', {
+      scale: 0.9,
+      '--corners-rouded': '40px',
+      ease: 'power2.inOut',
+      scrollTrigger: {
+        trigger: '.container-video',
+        start: 'top top',
+        end: '+=300',
+        scrub: true
+      }
+    });
+
+    // Text sections: fade in + slide up on scroll into view
+    gsap.utils.toArray('.heading-menu').forEach(function(el) {
+      gsap.from(el, {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+  </script>
+
 </body>
 
 </html>

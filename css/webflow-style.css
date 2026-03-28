@@ -2188,7 +2188,6 @@ textarea.w-input, textarea.w-select {
   border-radius: var(--corners-rouded);
   flex: 1;
   overflow: hidden;
-  transition: border-radius 0.3s ease, transform 0.3s ease;
 }
 
 .showcase-carousel {

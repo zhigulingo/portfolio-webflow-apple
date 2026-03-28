@@ -1421,11 +1421,8 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Video hero: scale down + round corners on scroll
-    gsap.to('.round-corner', {
-      scale: 0.9,
-      '--corners-rouded': '40px',
-      ease: 'power2.inOut',
+    // Video hero: scale down + round corners simultaneously on scroll
+    var tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.container-video',
         start: 'top top',
@@ -1433,6 +1430,12 @@
         scrub: true
       }
     });
+    tl.to('.round-corner', {
+      scale: 0.9,
+      borderRadius: '40px',
+      ease: 'power2.inOut',
+      duration: 1
+    }, 0);
 
     // Text sections: fade in + slide up on scroll into view
     gsap.utils.toArray('.heading-menu').forEach(function(el) {

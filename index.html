@@ -1385,22 +1385,53 @@
     }
   </style>
 
-  <!-- Remove IX2 scroll animations (now handled by GSAP) -->
+  <!-- Neutralize IX2 animations now handled by GSAP -->
   <script>
-    document.addEventListener('IX2_PAGE_UPDATE', function() {
-      // IX2 has initialized; we don't need to remove anything at runtime
-      // The GSAP animations below will layer on top, and IX2 scroll events
-      // will be neutralized by removing their targets' data-w-id for scroll
-    });
-    // Neutralize IX2 scroll animation on .round-corner by removing its data-w-id
     (function() {
-      var el = document.querySelector('[data-w-id="d947ce57-6eb1-4b2c-5507-e2e93414fa03"]');
-      if (el) el.removeAttribute('data-w-id');
-      // Remove scroll-triggered heading animations (data-w-id for heading-menu sections)
-      var h1 = document.querySelector('[data-w-id="81f5920d-9b68-dd34-2c26-e8cd4a73d793"]');
-      if (h1) h1.removeAttribute('data-w-id');
-      var h2 = document.querySelector('[data-w-id="c468bf85-5037-1fcd-6499-54d9a75cde72"]');
-      if (h2) h2.removeAttribute('data-w-id');
+      // Remove data-w-id from scroll-animated elements
+      ['d947ce57-6eb1-4b2c-5507-e2e93414fa03',
+       '81f5920d-9b68-dd34-2c26-e8cd4a73d793',
+       'c468bf85-5037-1fcd-6499-54d9a75cde72'].forEach(function(id) {
+        var el = document.querySelector('[data-w-id="' + id + '"]');
+        if (el) el.removeAttribute('data-w-id');
+      });
+
+      // Remove data-w-id from ALL popup open/close triggers and backdrop elements
+      // This prevents IX2 from handling popups — GSAP will handle them instead
+      var popupSelectors = [
+        '.modal-popups [data-w-id]',        // all elements inside modal-popups
+        '.question-popup [data-w-id]',
+        '.order-popup [data-w-id]',
+        '.testimonial-popup [data-w-id]'
+      ];
+      popupSelectors.forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(el) {
+          el.removeAttribute('data-w-id');
+        });
+      });
+
+      // Also remove data-w-id from popup OPEN triggers (buttons outside modals)
+      // These are: .get-started, .learn, .order-button, .div-block-14, .testimonial-button
+      // They have data-w-id that triggers IX2 popup-open actions
+      document.querySelectorAll('.showcase-carousel [data-w-id]').forEach(function(el) {
+        el.removeAttribute('data-w-id');
+      });
+      document.querySelectorAll('.features [data-w-id]').forEach(function(el) {
+        el.removeAttribute('data-w-id');
+      });
+      document.querySelectorAll('.testimonials [data-w-id]').forEach(function(el) {
+        el.removeAttribute('data-w-id');
+      });
+      document.querySelectorAll('.projects [data-w-id]').forEach(function(el) {
+        el.removeAttribute('data-w-id');
+      });
+      // Get Started buttons (questionnaire triggers)
+      document.querySelectorAll('.get-started[data-w-id]').forEach(function(el) {
+        el.removeAttribute('data-w-id');
+      });
+      document.querySelectorAll('.questionare [data-w-id], .questionare-mobile [data-w-id]').forEach(function(el) {
+        el.removeAttribute('data-w-id');
+      });
     })();
   </script>
 
@@ -1424,6 +1455,190 @@
         scrub: 0.5
       }
     });
+
+    // ========== POPUP SYSTEM (GSAP) ==========
+    (function() {
+      // Map: click trigger data-w-id → popup selector
+      // Project popups
+      var popupMap = {
+        // PolicyFly
+        '.case-container.gto .div-block-14': '.policyfly-popup',
+        // Melodix
+        '.case-container.melodix .div-block-14': '.melodix-popup',
+        '.case-container.melodix': '.melodix-popup',
+        // Tasker
+        '.case-container.tasker .div-block-14': '.tasker-popup',
+        '.case-container.tasker': '.tasker-popup',
+        // Telegram Wallet
+        '.case-container.tgcontest .div-block-14': '.telegram-popup',
+        '.case-container.tgcontest': '.telegram-popup',
+        // Omtogether
+        '.case-container.omt .div-block-14': '.omtogether-popup',
+        '.case-container.omt': '.omtogether-popup',
+        // Demis
+        '.case-container.demis .div-block-14': '.demis-popup',
+        '.case-container.demis': '.demis-popup',
+        // Original (same as melodix behavior)
+        '.case-container.original .div-block-14': '.melodix-popup',
+        // Question popup
+        '.questionare .get-started': '.question-popup',
+        '.questionare-mobile .get-started': '.question-popup',
+        // Help me choose link
+        '.explore-services .link': '.question-popup',
+      };
+
+      // Service popups - Learn More buttons
+      var serviceLearnMap = {
+        'Brand Identity Kit': '.branding-popup',
+        'Logo Design': '.logo-popup',
+        'Product Package': '.package-popup',
+        'Product Video': '.promo-popup',
+        'Logo Animation': '.logo-anim-popup',
+        'Video Series': '.series-popup',
+        'Application Development': '.app-popup',
+        'Tech Review': '.tech-popup',
+        'Web Development': '.web-popup'
+      };
+
+      // Service popups - Order buttons → order popup
+      // Get a quote buttons inside service popups → question popup
+
+      function openPopup(popupSel) {
+        var popup = document.querySelector(popupSel);
+        if (!popup) return;
+        // Kill any running animations on this popup
+        gsap.killTweensOf(popup);
+        // Find the hero/content section inside
+        var hero = popup.querySelector('[class*="-hero"], .div-block-27');
+        // Set initial state
+        popup.style.display = 'block';
+        gsap.set(popup, { opacity: 0 });
+        if (hero) gsap.set(hero, { y: 60 });
+        // Animate in
+        var tl = gsap.timeline();
+        tl.to(popup, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 0);
+        if (hero) tl.to(hero, { y: 0, duration: 0.4, ease: 'power3.out' }, 0);
+        // Block body scroll
+        document.body.classList.add('no-scroll');
+      }
+
+      function closePopup(popupSel) {
+        var popup = typeof popupSel === 'string' ? document.querySelector(popupSel) : popupSel;
+        if (!popup) return;
+        gsap.killTweensOf(popup);
+        var hero = popup.querySelector('[class*="-hero"], .div-block-27');
+        var tl = gsap.timeline({
+          onComplete: function() {
+            popup.style.display = 'none';
+            gsap.set(popup, { opacity: 0 });
+            if (hero) gsap.set(hero, { y: 60 });
+            document.body.classList.remove('no-scroll');
+          }
+        });
+        if (hero) tl.to(hero, { y: 60, duration: 0.3, ease: 'power2.in' }, 0);
+        tl.to(popup, { opacity: 0, duration: 0.3, ease: 'power2.in' }, 0);
+      }
+
+      // Bind project popup triggers
+      Object.keys(popupMap).forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(trigger) {
+          trigger.style.cursor = 'pointer';
+          trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openPopup(popupMap[sel]);
+          });
+        });
+      });
+
+      // Bind service Learn More buttons
+      document.querySelectorAll('.features .learn.w-button').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Find which service card this belongs to
+          var card = btn.closest('.container-4');
+          if (!card) return;
+          var title = card.querySelector('h1');
+          if (!title) return;
+          var text = title.textContent.trim().replace(/\s+/g, ' ');
+          // Match to popup
+          var popupSel = null;
+          Object.keys(serviceLearnMap).forEach(function(key) {
+            if (text.indexOf(key) !== -1) popupSel = serviceLearnMap[key];
+          });
+          if (popupSel) openPopup(popupSel);
+        });
+      });
+
+      // Bind service Order buttons → order popup
+      document.querySelectorAll('.features .order-button').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          openPopup('.order-popup');
+        });
+      });
+
+      // Bind "Get a quote" buttons inside service popups → question popup
+      document.querySelectorAll('.modal-popups .button-6.w-button').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Close current popup first
+          var currentPopup = btn.closest('[class*="-popup"]');
+          if (currentPopup) {
+            closePopup(currentPopup);
+            setTimeout(function() { openPopup('.question-popup'); }, 350);
+          } else {
+            openPopup('.question-popup');
+          }
+        });
+      });
+
+      // Bind testimonial popups
+      document.querySelectorAll('.testimonials .review-card').forEach(function(card) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Determine which testimonial
+          var persona = card.querySelector('.persona');
+          if (!persona) return;
+          var classes = persona.className;
+          if (classes.indexOf('jack') !== -1) openPopup('.testimonial-popup.jack');
+          else if (classes.indexOf('ekaterina') !== -1) openPopup('.testimonial-popup.kate');
+          else if (classes.indexOf('vlad') !== -1) openPopup('.testimonial-popup.vlad');
+          else if (classes.indexOf('nikolay') !== -1) openPopup('.testimonial-popup.nik');
+          else openPopup('.testimonial-popup.anton');
+        });
+      });
+
+      // Bind close buttons (X) and backdrop (fade-mn)
+      document.querySelectorAll('.modal-popups .close-button, .modal-popups .close-button.testimonial').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var popup = btn.closest('[class*="-popup"]');
+          if (popup) closePopup(popup);
+        });
+      });
+      document.querySelectorAll('.modal-popups .fade-mn').forEach(function(backdrop) {
+        backdrop.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var popup = backdrop.closest('[class*="-popup"]');
+          if (popup) closePopup(popup);
+        });
+      });
+
+      // Fix: testimonial-popup.anton has no display:none by default (Webflow quirk)
+      var antonPopup = document.querySelector('.testimonial-popup.anton');
+      if (antonPopup && antonPopup.style.display !== 'none') {
+        antonPopup.style.display = 'none';
+        antonPopup.style.opacity = '0';
+      }
+    })();
 
     // Text sections: fade in + slide up on scroll into view
     gsap.utils.toArray('.heading-menu').forEach(function(el) {

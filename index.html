@@ -1401,10 +1401,26 @@
     })();
   </script>
 
-  <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- GSAP + ScrollTrigger (async to not block page render) -->
   <script>
+    (function() {
+      var loaded = 0;
+      function onBothLoaded() {
+        loaded++;
+        if (loaded < 2) return;
+        initGSAP();
+      }
+      var s1 = document.createElement('script');
+      s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+      s1.onload = function() {
+        var s2 = document.createElement('script');
+        s2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
+        s2.onload = function() { initGSAP(); };
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s1);
+    })();
+    function initGSAP() {
     gsap.registerPlugin(ScrollTrigger);
 
     // Video hero: scale 1→0.9 + border-radius 0→40px on scroll (reverses on scroll up)
@@ -1620,6 +1636,7 @@
         }
       });
     });
+    } // end initGSAP
   </script>
 
 </body>

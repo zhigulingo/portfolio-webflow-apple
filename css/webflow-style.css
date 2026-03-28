@@ -2056,7 +2056,7 @@ textarea.w-input, textarea.w-select {
 
 :root {
   --corners-flat: 0px;
-  --corners-rouded: 40px;
+  --corners-rouded: 0px;
   --white: white;
   --black: black;
   --blue-button: #0171e3;
@@ -2188,6 +2188,7 @@ textarea.w-input, textarea.w-select {
   border-radius: var(--corners-rouded);
   flex: 1;
   overflow: hidden;
+  transition: border-radius 0.3s ease, transform 0.3s ease;
 }
 
 .showcase-carousel {

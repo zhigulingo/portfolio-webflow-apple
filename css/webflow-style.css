@@ -4994,6 +4994,35 @@ textarea.w-input, textarea.w-select {
 
 }
 
+/* Mobile: fix toggle selector alignment */
+@media screen and (max-width: 767px) {
+  .toggle-wrapper-mobile {
+    min-width: auto !important;
+    width: calc(100% - 40px) !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+  }
+
+  .toggle-wrapper-mobile .button-switch.active {
+    width: calc(33.33% - 8px) !important;
+    min-width: auto !important;
+    margin-left: 4px !important;
+    margin-right: 4px !important;
+  }
+
+  .toggle-wrapper-mobile .button-switch._1,
+  .toggle-wrapper-mobile .button-switch._2,
+  .toggle-wrapper-mobile .button-switch._3 {
+    flex: 1 !important;
+    text-align: center !important;
+  }
+
+  .toggle-wrapper-mobile .text-block {
+    font-size: 14px !important;
+    white-space: nowrap !important;
+  }
+}
+
 /* Mobile: popup close button outside card + content shifted up */
 @media screen and (max-width: 767px) {
   /* Position close button outside and to the right of the card */

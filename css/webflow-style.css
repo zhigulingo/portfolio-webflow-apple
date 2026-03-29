@@ -5014,12 +5014,18 @@ textarea.w-input, textarea.w-select {
   .toggle-wrapper-mobile .button-switch._2,
   .toggle-wrapper-mobile .button-switch._3 {
     flex: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     text-align: center !important;
+    padding: 12px 0 !important;
   }
 
   .toggle-wrapper-mobile .text-block {
     font-size: 14px !important;
     white-space: nowrap !important;
+    text-align: center !important;
+    width: 100% !important;
   }
 }
 

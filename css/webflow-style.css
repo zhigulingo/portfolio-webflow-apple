@@ -5041,16 +5041,22 @@ textarea.w-input, textarea.w-select {
 .package-hero.product {
   display: block !important;
   position: relative !important;
-  overflow: visible !important;
 }
 
-/* Unified close button positioning inside all service/project popups */
+/* Unified close button — fixed to viewport top-right of popup */
 .modal-popups .close-button {
   float: none !important;
-  position: absolute !important;
+  position: fixed !important;
   top: 24px !important;
   right: 24px !important;
-  z-index: 100 !important;
+  z-index: 10000 !important;
+}
+
+/* Prevent body scroll when popup is open */
+body.no-scroll {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
 }
 
 /* Mobile: popup close button outside card + content shifted up */

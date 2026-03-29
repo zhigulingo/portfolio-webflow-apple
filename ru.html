@@ -1473,18 +1473,21 @@
         'Tech Review': '.tech-popup', 'Технический': '.tech-popup',
         'Web Development': '.web-popup', 'Веб': '.web-popup'
       };
+      var savedScrollY = 0;
       function openPopup(popupSel) {
         var popup = document.querySelector(popupSel);
         if (!popup) return;
         gsap.killTweensOf(popup);
         var hero = popup.querySelector('[class*="-hero"], .div-block-27');
+        savedScrollY = window.scrollY;
+        document.body.style.top = '-' + savedScrollY + 'px';
+        document.body.classList.add('no-scroll');
         popup.style.display = 'block';
         gsap.set(popup, { opacity: 0 });
         if (hero) gsap.set(hero, { y: 60 });
         var tl = gsap.timeline();
         tl.to(popup, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 0);
         if (hero) tl.to(hero, { y: 0, duration: 0.4, ease: 'power3.out' }, 0);
-        document.body.classList.add('no-scroll');
       }
       function closePopup(popupSel) {
         var popup = typeof popupSel === 'string' ? document.querySelector(popupSel) : popupSel;
@@ -1497,6 +1500,8 @@
             gsap.set(popup, { opacity: 0 });
             if (hero) gsap.set(hero, { y: 60 });
             document.body.classList.remove('no-scroll');
+            document.body.style.top = '';
+            window.scrollTo(0, savedScrollY);
           }
         });
         if (hero) tl.to(hero, { y: 60, duration: 0.3, ease: 'power2.in' }, 0);

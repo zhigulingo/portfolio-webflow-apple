@@ -4993,3 +4993,42 @@ textarea.w-input, textarea.w-select {
   }
 
 }
+
+/* Mobile: popup close button outside card + content shifted up */
+@media screen and (max-width: 767px) {
+  /* Position close button outside and to the right of the card */
+  .modal-popups [class$="-hero"],
+  .modal-popups [class*="-hero "] {
+    position: relative;
+    overflow: visible !important;
+  }
+
+  .modal-popups .close-button {
+    position: absolute !important;
+    top: -48px !important;
+    right: 0px !important;
+    z-index: 100 !important;
+    background-color: rgba(255,255,255,0.9) !important;
+  }
+
+  .modal-popups .close-button.testimonial {
+    position: absolute !important;
+    top: -48px !important;
+    right: 0px !important;
+  }
+
+  /* Shift content up inside the card, keep top padding */
+  .modal-popups .project-container {
+    padding-top: 10px !important;
+  }
+
+  .modal-popups .project-box {
+    margin-top: 0 !important;
+  }
+
+  /* Ensure popups have enough top space for the external close button */
+  .modal-popups [class$="-popup"],
+  .modal-popups [class*="-popup "] {
+    padding-top: 60px !important;
+  }
+}

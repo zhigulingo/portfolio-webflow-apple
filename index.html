@@ -1522,32 +1522,36 @@
         });
       });
 
-      // Bind service Learn More buttons
-      document.querySelectorAll('.features .learn.w-button').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          // Find which service card this belongs to
-          var card = btn.closest('.container-4');
-          if (!card) return;
-          var title = card.querySelector('h1');
-          if (!title) return;
-          var text = title.textContent.trim().replace(/\s+/g, ' ');
-          // Match to popup
-          var popupSel = null;
-          Object.keys(serviceLearnMap).forEach(function(key) {
-            if (text.indexOf(key) !== -1) popupSel = serviceLearnMap[key];
-          });
-          if (popupSel) openPopup(popupSel);
-        });
-      });
-
-      // Bind service Order buttons → order popup
-      document.querySelectorAll('.features .order-button').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          openPopup('.order-popup');
+      // Bind service cards — Learn More opens service popup, Order opens order popup
+      var serviceCards = [
+        // Brand Identity section (3 cards)
+        { container: '.brand-container', popups: ['.branding-popup', '.logo-popup', '.package-popup'] },
+        // Motion Design section (3 cards)
+        { container: '.motion-container', popups: ['.promo-popup', '.logo-anim-popup', '.series-popup'] },
+        // Web/Mobile section (3 cards)
+        { container: '.web-container', popups: ['.app-popup', '.tech-popup', '.web-popup'] }
+      ];
+      serviceCards.forEach(function(section) {
+        var cards = document.querySelectorAll(section.container + ' .container-4');
+        cards.forEach(function(card, i) {
+          var popupSel = section.popups[i];
+          if (!popupSel) return;
+          // Learn More button
+          var learnBtn = card.querySelector('.learn.w-button');
+          if (learnBtn) {
+            learnBtn.addEventListener('click', function(e) {
+              e.preventDefault(); e.stopPropagation();
+              openPopup(popupSel);
+            });
+          }
+          // Order button
+          var orderBtn = card.querySelector('.order-button');
+          if (orderBtn) {
+            orderBtn.addEventListener('click', function(e) {
+              e.preventDefault(); e.stopPropagation();
+              openPopup('.order-popup');
+            });
+          }
         });
       });
 

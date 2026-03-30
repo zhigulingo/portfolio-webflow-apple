@@ -5006,36 +5006,10 @@ textarea.w-input, textarea.w-select {
 
 }
 
-/* Mobile: toggle selector — wrapper width + text centering, GSAP handles animation */
-@media screen and (max-width: 767px) {
-  .toggle-wrapper-mobile {
-    width: calc(100% - 40px) !important;
-    margin-left: 20px !important;
-    margin-right: 20px !important;
-  }
-
-  .toggle-wrapper-mobile .button-switch.active {
-    width: calc(33.333% - 10px) !important;
-    top: 5px !important;
-    bottom: 5px !important;
-    left: 0 !important;
-  }
-
-  .toggle-wrapper-mobile .button-switch._1,
-  .toggle-wrapper-mobile .button-switch._2,
-  .toggle-wrapper-mobile .button-switch._3 {
-    flex: 1 !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-    padding: 12px 0 !important;
-  }
-
+/* Mobile toggle: reduce font so all 3 labels fit */
+@media screen and (max-width: 479px) {
   .toggle-wrapper-mobile .text-block {
-    font-size: 14px !important;
-    white-space: nowrap !important;
-    text-align: center !important;
+    font-size: 13px !important;
   }
 }
 .package-hero,

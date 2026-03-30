@@ -2324,10 +2324,10 @@ textarea.w-input, textarea.w-select {
 .toggle-wrapper {
   background-color: var(--white);
   border-radius: 60px;
-  width: 32rem;
+  min-width: 32rem;
   min-height: 4rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 40px;
+  margin-right: 600px;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -2342,15 +2342,11 @@ textarea.w-input, textarea.w-select {
 }
 
 .button-switch {
-  background-color: #0000;
+  background-color: #fff;
   border: 1px #000;
   flex: 1;
   order: 1;
-  align-self: stretch;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 14px 0;
+  align-self: center;
   overflow: visible;
 }
 
@@ -2358,17 +2354,17 @@ textarea.w-input, textarea.w-select {
   z-index: 1;
   background-color: #2e2e2e;
   border-radius: 60px;
-  width: calc(33.333% - 10px);
-  margin-left: 5px;
-  padding: 0;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  min-width: 10rem;
+  min-height: 2px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 20px 10px;
   display: block;
   position: absolute;
-  top: 5px;
-  bottom: 5px;
-  left: 0;
   overflow: visible;
-  /* GSAP controls transform — disable CSS transitions */
-  transition: none !important;
 }
 
 .button-switch._2, .button-switch._3 {
@@ -2376,9 +2372,6 @@ textarea.w-input, textarea.w-select {
   cursor: pointer;
   background-color: #0000;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .button-switch._1 {
@@ -2387,10 +2380,8 @@ textarea.w-input, textarea.w-select {
   text-align: center;
   cursor: pointer;
   background-color: #0000;
+  margin-left: 10px;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .text-block {
@@ -2423,8 +2414,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .text-block.brand {
-  /* GSAP controls color for toggle state */
-  color: #ffffff;
+  color: #f1ebeb;
 }
 
 .text-block.motion {
@@ -2464,8 +2454,6 @@ textarea.w-input, textarea.w-select {
 
 .selectoranimation {
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .motion-container, .web-container {
@@ -4230,10 +4218,10 @@ textarea.w-input, textarea.w-select {
 .toggle-wrapper-mobile {
   background-color: var(--white);
   border-radius: 60px;
-  width: 100%;
+  min-width: 32rem;
   min-height: 4rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 40px;
+  margin-right: 600px;
   display: none;
   position: relative;
   overflow: hidden;
@@ -4505,14 +4493,14 @@ textarea.w-input, textarea.w-select {
   }
 
   .toggle-wrapper {
-    width: 24rem;
+    min-width: 24rem;
     margin-left: auto;
     margin-right: auto;
     display: none;
   }
 
   .button-switch.active {
-    width: calc(33.333% - 10px);
+    min-width: 8rem;
   }
 
   .brand-container {
@@ -4939,7 +4927,7 @@ textarea.w-input, textarea.w-select {
   }
 
   .toggle-wrapper-mobile {
-    width: calc(100% - 40px);
+    min-width: 24rem;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -5006,12 +4994,6 @@ textarea.w-input, textarea.w-select {
 
 }
 
-/* Mobile toggle: reduce font so all 3 labels fit */
-@media screen and (max-width: 479px) {
-  .toggle-wrapper-mobile .text-block {
-    font-size: 13px !important;
-  }
-}
 .package-hero,
 .logo-anim-hero,
 .series-hero,

@@ -4927,10 +4927,32 @@ textarea.w-input, textarea.w-select {
   }
 
   .toggle-wrapper-mobile {
-    min-width: 24rem;
+    min-width: auto;
+    width: calc(100% - 20px);
     margin-left: auto;
     margin-right: auto;
     display: flex;
+  }
+
+  .toggle-wrapper-mobile .button-switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    padding: 14px 0;
+  }
+
+  .toggle-wrapper-mobile .button-switch._1 {
+    margin-left: 0;
+  }
+
+  .toggle-wrapper-mobile .button-switch.active {
+    min-width: auto;
+    width: calc(33.333% - 10px);
+    margin-left: 5px;
+    top: 5px;
+    bottom: 5px;
+    left: 0;
   }
 
   .testimonial-popup.jack, .testimonial-popup.anton, .testimonial-popup.kate, .testimonial-popup.vlad, .testimonial-popup.nik {

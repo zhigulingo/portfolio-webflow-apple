@@ -2367,6 +2367,8 @@ textarea.w-input, textarea.w-select {
   bottom: 5px;
   left: 0;
   overflow: visible;
+  /* GSAP controls transform — disable CSS transitions */
+  transition: none !important;
 }
 
 .button-switch._2, .button-switch._3 {
@@ -2421,7 +2423,8 @@ textarea.w-input, textarea.w-select {
 }
 
 .text-block.brand {
-  color: #f1ebeb;
+  /* GSAP controls color for toggle state */
+  color: #ffffff;
 }
 
 .text-block.motion {
@@ -5003,7 +5006,7 @@ textarea.w-input, textarea.w-select {
 
 }
 
-/* Mobile: toggle selector — only wrapper width + text centering, IX2 handles animation */
+/* Mobile: toggle selector — wrapper width + text centering, GSAP handles animation */
 @media screen and (max-width: 767px) {
   .toggle-wrapper-mobile {
     width: calc(100% - 40px) !important;

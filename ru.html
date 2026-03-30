@@ -1409,7 +1409,8 @@
       ['.modal-popups [data-w-id]','.showcase-carousel [data-w-id]',
        '.features [data-w-id]','.testimonials [data-w-id]',
        '.projects [data-w-id]','.get-started[data-w-id]',
-       '.questionare [data-w-id]','.questionare-mobile [data-w-id]'
+       '.questionare [data-w-id]','.questionare-mobile [data-w-id]',
+       '.toggle-wrapper [data-w-id]','.toggle-wrapper-mobile [data-w-id]'
       ].forEach(function(sel) {
         document.querySelectorAll(sel).forEach(function(el) {
           el.removeAttribute('data-w-id');
@@ -1605,6 +1606,8 @@
     });
     } // end initGSAP
   </script>
+
+  <script src="js/toggle-gsap.js"></script>
 
 </body>
 

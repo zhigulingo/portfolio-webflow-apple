@@ -2324,10 +2324,10 @@ textarea.w-input, textarea.w-select {
 .toggle-wrapper {
   background-color: var(--white);
   border-radius: 60px;
-  min-width: 32rem;
+  width: 32rem;
   min-height: 4rem;
-  margin-left: 40px;
-  margin-right: 600px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -2342,11 +2342,15 @@ textarea.w-input, textarea.w-select {
 }
 
 .button-switch {
-  background-color: #fff;
+  background-color: #0000;
   border: 1px #000;
   flex: 1;
   order: 1;
-  align-self: center;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0;
   overflow: visible;
 }
 
@@ -2354,16 +2358,14 @@ textarea.w-input, textarea.w-select {
   z-index: 1;
   background-color: #2e2e2e;
   border-radius: 60px;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  min-width: 10rem;
-  min-height: 2px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 20px 10px;
+  width: calc(33.333% - 10px);
+  margin-left: 5px;
+  padding: 0;
   display: block;
   position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 0;
   overflow: visible;
 }
 
@@ -2372,6 +2374,9 @@ textarea.w-input, textarea.w-select {
   cursor: pointer;
   background-color: #0000;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-switch._1 {
@@ -2380,8 +2385,10 @@ textarea.w-input, textarea.w-select {
   text-align: center;
   cursor: pointer;
   background-color: #0000;
-  margin-left: 10px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-block {
@@ -2454,6 +2461,8 @@ textarea.w-input, textarea.w-select {
 
 .selectoranimation {
   max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .motion-container, .web-container {
@@ -4218,10 +4227,10 @@ textarea.w-input, textarea.w-select {
 .toggle-wrapper-mobile {
   background-color: var(--white);
   border-radius: 60px;
-  min-width: 32rem;
+  width: 100%;
   min-height: 4rem;
-  margin-left: 40px;
-  margin-right: 600px;
+  margin-left: auto;
+  margin-right: auto;
   display: none;
   position: relative;
   overflow: hidden;
@@ -4493,14 +4502,14 @@ textarea.w-input, textarea.w-select {
   }
 
   .toggle-wrapper {
-    min-width: 24rem;
+    width: 24rem;
     margin-left: auto;
     margin-right: auto;
     display: none;
   }
 
   .button-switch.active {
-    min-width: 8rem;
+    width: calc(33.333% - 10px);
   }
 
   .brand-container {
@@ -4927,7 +4936,7 @@ textarea.w-input, textarea.w-select {
   }
 
   .toggle-wrapper-mobile {
-    min-width: 24rem;
+    width: calc(100% - 40px);
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -4997,10 +5006,16 @@ textarea.w-input, textarea.w-select {
 /* Mobile: toggle selector — only wrapper width + text centering, IX2 handles animation */
 @media screen and (max-width: 767px) {
   .toggle-wrapper-mobile {
-    min-width: auto !important;
     width: calc(100% - 40px) !important;
     margin-left: 20px !important;
     margin-right: 20px !important;
+  }
+
+  .toggle-wrapper-mobile .button-switch.active {
+    width: calc(33.333% - 10px) !important;
+    top: 5px !important;
+    bottom: 5px !important;
+    left: 0 !important;
   }
 
   .toggle-wrapper-mobile .button-switch._1,

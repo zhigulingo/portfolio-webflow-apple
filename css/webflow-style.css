@@ -5001,29 +5001,50 @@ textarea.w-input, textarea.w-select {
     width: calc(100% - 40px) !important;
     margin-left: 20px !important;
     margin-right: 20px !important;
+    justify-content: space-between !important; /* Distribute space between buttons */
+    padding: 0 4px !important; /* Add padding to wrapper */
+    box-sizing: border-box !important;
+    position: relative; /* For absolute positioning of the active slider */
   }
 
-  .toggle-wrapper-mobile .button-switch.active {
-    width: calc(33.33% - 8px) !important;
-    min-width: auto !important;
-    margin-left: 4px !important;
-    margin-right: 4px !important;
-  }
-
-  .toggle-wrapper-mobile .button-switch._1,
-  .toggle-wrapper-mobile .button-switch._2,
-  .toggle-wrapper-mobile .button-switch._3 {
-    flex: 1 !important;
+  .toggle-wrapper-mobile .button-switch {
+    flex: 1 !important; /* Allow buttons to grow and shrink */
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    padding: 12px 10px !important; /* Padding for text */
+    min-width: auto !important; /* Adjust to content */
+    position: relative !important; /* For z-index stacking */
+    z-index: 1 !important; /* Below active slider */
+    white-space: nowrap !important; /* Prevent text wrapping */
     text-align: center !important;
-    padding: 12px 0 !important;
+  }
+
+  .toggle-wrapper-mobile .button-switch.active {
+    width: auto !important; /* Adjust to content */
+    min-width: 80px !important; /* Minimum width */
+    margin: 0 !important; /* Reset margin, use padding */
+    padding: 12px 10px !important;
+    box-sizing: border-box !important;
+    display: flex !important; /* Helps center content */
+    justify-content: center !important;
+    align-items: center !important;
+    position: absolute !important; /* For transform */
+    transform: translateX(0) !important; /* Initial position, will be overridden */
+    z-index: 2 !important; /* Above other buttons */
+  }
+
+  /* Adjust translateX for each button based on proportions */
+  /* These values are approximations and might need fine-tuning */
+  .toggle-wrapper-mobile .button-switch._2.active {
+     transform: translateX(calc((100% - 8px) / 3)) !important;
+  }
+  .toggle-wrapper-mobile .button-switch._3.active {
+     transform: translateX(calc(2 * (100% - 8px) / 3)) !important;
   }
 
   .toggle-wrapper-mobile .text-block {
     font-size: 14px !important;
-    white-space: nowrap !important;
     text-align: center !important;
     width: 100% !important;
   }

@@ -1652,14 +1652,10 @@
           var btn = buttons[index];
           if (!btn) return;
 
-          // Move indicator to match the clicked button position
-          var wrapperRect = wrapper.getBoundingClientRect();
-          var btnRect = btn.getBoundingClientRect();
-          var leftPos = btnRect.left - wrapperRect.left;
-
+          // Move indicator using offset props (relative to wrapper)
           gsap.to(indicator, {
-            left: leftPos,
-            width: btnRect.width,
+            left: btn.offsetLeft,
+            width: btn.offsetWidth,
             duration: 0.35,
             ease: 'power2.out'
           });
@@ -1700,11 +1696,9 @@
         // Initialize: activate first button after layout is ready
         requestAnimationFrame(function() {
           var btn = buttons[0];
-          var wrapperRect = wrapper.getBoundingClientRect();
-          var btnRect = btn.getBoundingClientRect();
           gsap.set(indicator, {
-            left: btnRect.left - wrapperRect.left,
-            width: btnRect.width,
+            left: btn.offsetLeft,
+            width: btn.offsetWidth,
             top: 5,
             bottom: 5,
             height: 'auto'

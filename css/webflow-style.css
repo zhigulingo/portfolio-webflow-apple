@@ -2350,11 +2350,11 @@ textarea.w-input, textarea.w-select {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 14px 4px;
+  padding: 14px 12px;
   cursor: pointer;
   position: relative;
   z-index: 5;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .button-switch.active {
@@ -2363,7 +2363,6 @@ textarea.w-input, textarea.w-select {
   border-radius: 60px;
   justify-content: center;
   align-items: center;
-  width: calc(33.333% - 10px);
   margin: 0;
   padding: 0;
   display: block;
@@ -2397,6 +2396,8 @@ textarea.w-input, textarea.w-select {
   align-items: center;
   font-size: 14px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: block;
   position: static;
   transition: color 0.3s ease;
@@ -4510,7 +4511,7 @@ textarea.w-input, textarea.w-select {
   }
 
   .button-switch.active {
-    width: calc(33.333% - 10px);
+    width: auto;
   }
 
   .brand-container {
@@ -4962,8 +4963,8 @@ textarea.w-input, textarea.w-select {
 
   .toggle-wrapper-mobile .button-switch.active {
     min-width: auto;
-    width: calc(33.333% - 10px);
-    margin-left: 5px;
+    width: auto;
+    margin-left: 0;
     top: 5px;
     bottom: 5px;
     left: 0;

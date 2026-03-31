@@ -2330,7 +2330,7 @@ textarea.w-input, textarea.w-select {
   margin-right: 600px;
   display: flex;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .explore-services {
@@ -2342,11 +2342,18 @@ textarea.w-input, textarea.w-select {
 }
 
 .button-switch {
-  background-color: #fff;
-  border: 1px #000;
+  background-color: #0000;
+  border: none;
   flex: 1;
   order: 1;
-  align-self: center;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 4px;
+  cursor: pointer;
+  position: relative;
+  z-index: 5;
   overflow: visible;
 }
 
@@ -2354,16 +2361,17 @@ textarea.w-input, textarea.w-select {
   z-index: 1;
   background-color: #2e2e2e;
   border-radius: 60px;
-  flex: 1;
   justify-content: center;
   align-items: center;
-  min-width: 10rem;
-  min-height: 2px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 20px 10px;
+  width: calc(33.333% - 10px);
+  margin: 0;
+  padding: 0;
   display: block;
   position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  pointer-events: none;
   overflow: visible;
 }
 
@@ -2376,29 +2384,30 @@ textarea.w-input, textarea.w-select {
 
 .button-switch._1 {
   z-index: 5;
-  color: #f7f0f0;
   text-align: center;
   cursor: pointer;
   background-color: #0000;
-  margin-left: 10px;
   position: relative;
 }
 
 .text-block {
-  color: #000;
+  color: #1b1b1b;
   text-align: center;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
+  white-space: nowrap;
   display: block;
   position: static;
+  transition: color 0.3s ease;
 }
 
 .text-block._2 {
-  color: #161515;
+  color: #1b1b1b;
 }
 
 .text-block._3 {
-  color: #141414;
+  color: #1b1b1b;
 }
 
 .text-block.off {
@@ -2409,20 +2418,20 @@ textarea.w-input, textarea.w-select {
 
 .text-block.on {
   z-index: 5;
-  color: #e7e1e1;
+  color: #fff;
   position: relative;
 }
 
 .text-block.brand {
-  color: #f1ebeb;
+  color: #1b1b1b;
 }
 
 .text-block.motion {
-  padding-right: 4px;
+  padding-right: 0;
 }
 
 .text-block.web {
-  padding-right: 22px;
+  padding-right: 0;
 }
 
 .brand-container {
@@ -4224,7 +4233,7 @@ textarea.w-input, textarea.w-select {
   margin-right: 600px;
   display: none;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .testimonial-popup {
@@ -4493,14 +4502,15 @@ textarea.w-input, textarea.w-select {
   }
 
   .toggle-wrapper {
-    min-width: 24rem;
+    min-width: auto;
+    width: calc(100% - 20px);
     margin-left: auto;
     margin-right: auto;
     display: none;
   }
 
   .button-switch.active {
-    min-width: 8rem;
+    width: calc(33.333% - 10px);
   }
 
   .brand-container {

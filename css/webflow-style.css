@@ -4956,6 +4956,10 @@ textarea.w-input, textarea.w-select {
     margin-left: 0;
   }
 
+  .toggle-wrapper-mobile .text-block {
+    font-size: 12px;
+  }
+
   .toggle-wrapper-mobile .button-switch.active {
     min-width: auto;
     width: calc(33.333% - 10px);

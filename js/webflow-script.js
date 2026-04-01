@@ -9,6 +9,7 @@ function toggleScroll(enable) {
         // Восстанавливаем позицию прокрутки перед снятием no-scroll
         const scrollPosition = sessionStorage.getItem('scrollPosition');
         body.classList.remove('no-scroll');
+        body.style.top = '';
         if (scrollPosition) {
             window.scrollTo(0, parseInt(scrollPosition));
             sessionStorage.removeItem('scrollPosition');
@@ -16,8 +17,10 @@ function toggleScroll(enable) {
         console.log('Скролл включён');
     } else {
         // Сохраняем текущую позицию прокрутки перед добавлением no-scroll
-        sessionStorage.setItem('scrollPosition', window.pageYOffset);
+        const scrollY = window.pageYOffset;
+        sessionStorage.setItem('scrollPosition', scrollY);
         body.classList.add('no-scroll');
+        body.style.top = -scrollY + 'px';
         console.log('Скролл отключён');
     }
 }

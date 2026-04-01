@@ -1403,18 +1403,18 @@
     }
   </style>
 
-  <!-- Neutralize IX2 popup triggers (now handled by GSAP) -->
+  <!-- Neutralize IX2 popup triggers (now handled by GSAP) + prevent Lottie double-render -->
   <script>
     (function() {
-      ['.modal-popups [data-w-id]','.showcase-carousel [data-w-id]',
-       '.features [data-w-id]','.testimonials [data-w-id]',
-       '.projects [data-w-id]','.get-started[data-w-id]',
-       '.questionare [data-w-id]','.questionare-mobile [data-w-id]',
-       '.toggle-wrapper [data-w-id]','.toggle-wrapper-mobile [data-w-id]'
-      ].forEach(function(sel) {
-        document.querySelectorAll(sel).forEach(function(el) {
-          el.removeAttribute('data-w-id');
-        });
+      // Remove ALL data-w-id attributes to fully disable IX2 interactions
+      // (all animations now handled by GSAP: hero, toggle, popups)
+      document.querySelectorAll('[data-w-id]').forEach(function(el) {
+        el.removeAttribute('data-w-id');
+      });
+      // Rename lottie attribute so Webflow's bundled Lottie player skips these elements.
+      // Our lottie-loader.js uses the renamed attribute instead.
+      document.querySelectorAll('[data-animation-type="lottie"]').forEach(function(el) {
+        el.setAttribute('data-animation-type', 'lottie-custom');
       });
     })();
   </script>

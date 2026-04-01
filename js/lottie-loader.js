@@ -73,7 +73,7 @@
     elements.forEach(function (el) { observer.observe(el); });
   }
 
-  var elements = document.querySelectorAll('[data-animation-type="lottie"]');
+  var elements = document.querySelectorAll('[data-animation-type="lottie-custom"]');
   if (!elements.length) return;
 
   var needsFflate = Array.prototype.some.call(elements, function (el) {

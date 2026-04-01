@@ -2370,6 +2370,7 @@ textarea.w-input, textarea.w-select {
   top: 5px;
   bottom: 5px;
   left: 5px;
+  width: calc(33.333% - 3.33px);
   pointer-events: none;
   overflow: visible;
 }
@@ -4511,7 +4512,7 @@ textarea.w-input, textarea.w-select {
   }
 
   .button-switch.active {
-    width: auto;
+    width: calc(33.333% - 3.33px);
   }
 
   .brand-container {
@@ -4963,7 +4964,7 @@ textarea.w-input, textarea.w-select {
 
   .toggle-wrapper-mobile .button-switch.active {
     min-width: auto;
-    width: auto;
+    width: calc(33.333% - 1px);
     margin-left: 0;
     top: 5px;
     bottom: 5px;

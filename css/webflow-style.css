@@ -2358,7 +2358,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .button-switch.active {
-  z-index: 6;
+  z-index: 2;
   background-color: #2e2e2e;
   border-radius: 60px;
   justify-content: center;

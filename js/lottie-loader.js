@@ -59,16 +59,16 @@
     function initAnimationTracked(el) {
       var src = el.getAttribute('data-src');
       var loop = el.getAttribute('data-loop') === '1';
-      var autoplay = el.getAttribute('data-autoplay') === '1';
       var renderer = el.getAttribute('data-renderer') || 'svg';
       var isDotLottie = src.indexOf('.lottie') !== -1;
 
+      // Always start paused — IntersectionObserver controls playback
       if (!isDotLottie) {
         var anim = lottie.loadAnimation({
           container: el,
           renderer: renderer,
           loop: loop,
-          autoplay: autoplay,
+          autoplay: false,
           path: src
         });
         animMap.set(el, anim);
@@ -83,7 +83,7 @@
             container: el,
             renderer: renderer,
             loop: loop,
-            autoplay: autoplay,
+            autoplay: false,
             animationData: animationData
           });
           animMap.set(el, anim);

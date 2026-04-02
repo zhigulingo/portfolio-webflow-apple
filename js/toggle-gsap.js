@@ -93,12 +93,11 @@
       });
 
       // Initialize: set indicator to first button position
+      // NOTE: do NOT set height:'auto' — the indicator is an empty div;
+      // its height comes from CSS top/bottom offsets on position:absolute.
       requestAnimationFrame(function() {
         gsap.set(indicator, {
-          x: getTranslateValues(wrapper)[0],
-          top: 5,
-          bottom: 5,
-          height: 'auto'
+          x: getTranslateValues(wrapper)[0]
         });
         // Set first button text to white
         var firstText = buttons[0].querySelector('.text-block');

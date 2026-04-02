@@ -23,46 +23,19 @@
     return JSON.parse(fflate.strFromU8(animBytes));
   }
 
-  function initAnimation(el) {
-    var src = el.getAttribute('data-src');
-    var loop = el.getAttribute('data-loop') === '1';
-    var autoplay = el.getAttribute('data-autoplay') === '1';
-    var renderer = el.getAttribute('data-renderer') || 'svg';
-    var isDotLottie = src.indexOf('.lottie') !== -1;
-
-    if (!isDotLottie) {
-      lottie.loadAnimation({
-        container: el,
-        renderer: renderer,
-        loop: loop,
-        autoplay: autoplay,
-        path: src
-      });
-      return Promise.resolve();
-    }
-
-    return fetch(src)
-      .then(function (r) { return r.arrayBuffer(); })
-      .then(function (buf) {
-        var animationData = parseDotLottie(buf);
-        lottie.loadAnimation({
-          container: el,
-          renderer: renderer,
-          loop: loop,
-          autoplay: autoplay,
-          animationData: animationData
-        });
-      });
-  }
-
   function observeElements(elements) {
     var count = 0;
-    var observer = new IntersectionObserver(function (entries) {
+    var animMap = new WeakMap(); // el → lottie animation instance
+
+    // First observer: lazy-init animations when they scroll into view
+    var initObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        observer.unobserve(entry.target);
-        initAnimation(entry.target).then(function () {
+        initObserver.unobserve(entry.target);
+        initAnimationTracked(entry.target).then(function () {
           count++;
+          // After init, start watching for visibility to pause/play
+          visibilityObserver.observe(entry.target);
           if (count === elements.length) {
             console.log('Lottie: initialized ' + count + ' animations');
           }
@@ -70,7 +43,54 @@
       });
     }, { rootMargin: '200px' });
 
-    elements.forEach(function (el) { observer.observe(el); });
+    // Second observer: pause off-screen animations to save CPU/GPU
+    var visibilityObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var anim = animMap.get(entry.target);
+        if (!anim) return;
+        if (entry.isIntersecting) {
+          anim.play();
+        } else {
+          anim.pause();
+        }
+      });
+    }, { rootMargin: '50px' });
+
+    function initAnimationTracked(el) {
+      var src = el.getAttribute('data-src');
+      var loop = el.getAttribute('data-loop') === '1';
+      var autoplay = el.getAttribute('data-autoplay') === '1';
+      var renderer = el.getAttribute('data-renderer') || 'svg';
+      var isDotLottie = src.indexOf('.lottie') !== -1;
+
+      if (!isDotLottie) {
+        var anim = lottie.loadAnimation({
+          container: el,
+          renderer: renderer,
+          loop: loop,
+          autoplay: autoplay,
+          path: src
+        });
+        animMap.set(el, anim);
+        return Promise.resolve();
+      }
+
+      return fetch(src)
+        .then(function (r) { return r.arrayBuffer(); })
+        .then(function (buf) {
+          var animationData = parseDotLottie(buf);
+          var anim = lottie.loadAnimation({
+            container: el,
+            renderer: renderer,
+            loop: loop,
+            autoplay: autoplay,
+            animationData: animationData
+          });
+          animMap.set(el, anim);
+        });
+    }
+
+    elements.forEach(function (el) { initObserver.observe(el); });
   }
 
   var elements = document.querySelectorAll('[data-animation-type="lottie-custom"]');
